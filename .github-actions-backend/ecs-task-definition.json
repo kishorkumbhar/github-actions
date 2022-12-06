@@ -1,0 +1,31 @@
+{
+	"family": "intelligence-quotient-backend",
+	"executionRoleArn": "arn:aws:iam::513830484639:role/ECS-All-In-One-Role",
+	"taskRoleArn": "arn:aws:iam::513830484639:role/ECS-All-In-One-Role",
+	"containerDefinitions": [{
+		"name": "intelligence-quotient",
+		"image": "513830484639.dkr.ecr.ap-south-1.amazonaws.com/intelligence-quotient-backend:latest",
+		"cpu": 0,
+		"memoryReservation": 512,
+		"portMappings": [{
+			"containerPort": 3000,
+			"hostPort": 0,
+			"protocol": "tcp"
+		}],
+		"logConfiguration": {
+			"logDriver": "awslogs",
+			"options": {
+				"awslogs-group": "/ecs/intelligence-quotient-backend",
+				"awslogs-region": "ap-south-1",
+				"awslogs-stream-prefix": "ECS"
+			}
+		},
+		"environmentFiles": [{
+			"value": "arn:aws:s3:::intelligence-quotient-env/backend/backend.env",
+			"type": "s3"
+		}]
+	}],
+	"requiresCompatibilities": [
+		"EC2"
+	]
+}

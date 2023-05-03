@@ -1,2 +1,2 @@
 # github-actions
-CICD using github repo
+CICD using github actions
